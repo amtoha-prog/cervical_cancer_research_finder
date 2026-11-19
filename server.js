@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 
-app.get("/api/health", (req, res)) => {
+app.get("/api/health", (req, res) => {
   res.fson({ status: "ok" });
 });
 
