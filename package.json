@@ -1,0 +1,25 @@
+{
+  "name": "cervical_cancer_research_finder",
+  "version": "1.0.0",
+  "description": "Find Published cervical research from East Africa using the PubMed API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amtoha-prog/cervical_cancer_research_finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/amtoha-prog/cervical_cancer_research_finder/issues"
+  },
+  "homepage": "https://github.com/amtoha-prog/cervical_cancer_research_finder#readme",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  }
+}
