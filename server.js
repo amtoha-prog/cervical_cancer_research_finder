@@ -97,8 +97,14 @@ async function getArticleDetails(ids) {
   }
 
   const data = await response.json();
-  
 
+  const articles = [];
+  for (const id of data.result.uids) {
+    const article = data.result[id];
+    articles.push({
+
+    })
+  }
 }
 app.use(express.static("public"));
 
