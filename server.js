@@ -6,16 +6,20 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+// Pubmed base address
 const PUBMED_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
 const EAST_AFRICA = '(Rwanda OR Tanzania OR Kenya OR Uganda OR Burundi OR "South Sudan" OR "Democratic Republic of the Congo" OR Somalia)';
 
+// The Pubmed search words are from the user's choices
 function buildSearchTerm(keywords, country) {
   let term = "cervical cancer";
 
+  // Adding the user's keywords if they typed any
   if (keywords) {
     term = term + " AND (" + keywords + ")";
   }
 
+  // Add one country, or all East African countries
   if (country) {
     term = term + " AND " + country;
   } else {
@@ -34,5 +38,3 @@ app.get("/api/health", (req, res) => {
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
 });
-
-console.log(buildSearchTerm("HPV vaccine", "Kenya"));
