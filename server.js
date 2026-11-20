@@ -66,6 +66,17 @@ async function searchPubMed(term, sort, fromYear, toYear) {
   const data = await response.json();
   return data.esearchresult;
 }
+// Shows up to 3 author names, if more it's "et al."
+function formatAuthors(authors) {
+  const names = authors.map((author) => author.name)
+
+  if (names.length === 0) {
+    return "Authors not listed";
+  }
+  if (names.length > 3) {
+    return names.slice(0, 3).join(", ") + " et al.";
+  }
+}
 
 app.use(express.static("public"));
 
