@@ -29,16 +29,6 @@ function buildSearchTerm(keywords, country) {
   return term;
 }
 
-app.use(express.static("public"));
-
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
-});
-
-app.listen(PORT, () =>{
-  console.log(`CCRF server running at http://localhost:${PORT}`);
-});
-
 // Added the settings NCBI asks for in evry request
 function addNcbiSettings(params) {
   params.append("tool", process.env.NCBI_TOOL);
@@ -77,3 +67,12 @@ async function searchPubMed(term, sort, fromYear, toYear) {
   return data.esearchresult;
 }
 
+app.use(express.static("public"));
+
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
+});
+
+app.listen(PORT, () =>{
+  console.log(`CCRF server running at http://localhost:${PORT}`);
+});
