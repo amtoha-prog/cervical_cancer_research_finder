@@ -48,3 +48,21 @@ function addNcbiSettings(params) {
     params.append("api_key", process.env.NCBI_API_KEY);
   }
 }
+// Asking PubMed (Esearch) for the IDs of matching articles
+async function searchPubMed(term, sort, fromYear, toYear) {
+  const params = new URLSearchParams({
+    db: "pubmed",
+    term: term, 
+    retmode: "json",
+    retmax: "20",
+    sort: sort,
+  });
+  
+  if (fromYear && toYear) {
+    params.append("datetype", "pdat");
+    params.append("mindate", fromYear);
+    params.append("maxidate", toYear);
+  }
+
+  addNcbiSettings(params);
+}
