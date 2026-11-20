@@ -126,7 +126,15 @@ app.get("/api/search", async (req, res) => {
   const country = req.query.country || "";
   const fromYear = req.query.fromYear || "";
   const toYear = req.query.toYear || "";
+
+  let sort = "pub_date";
+  if (req.query.sort === "relevance") {
+    sort = "relevance";
+  }
+
+
 })
+
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
 });
