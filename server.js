@@ -38,3 +38,13 @@ app.get("/api/health", (req, res) => {
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
 });
+
+// Added the settings NCBI asks for in evry request
+function addNcbiSettings(params) {
+  params.append("tool", process.env.NCBI_TOOL);
+  params.append("email", process.env.NCBI_EMAIL);
+
+  if (process.env.NCBI_API_KEY) {
+    params.append("api_key", process.env.NCBI_API_KEY);
+  }
+}
