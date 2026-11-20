@@ -67,6 +67,7 @@ async function searchPubMed(term, sort, fromYear, toYear) {
   return data.esearchresult;
 }
 
+
 // Shows up to 3 author names, if more it's "et al."
 function formatAuthors(authors) {
   const names = authors.map((author) => author.name)
@@ -86,6 +87,17 @@ async function getArticleDetails(ids) {
     id: ids.join(","),
     retmode: "json",
   });
+  
+  addNcbiSettings(params);
+
+  const response = await fetch (PUBMED_URL + "/esummary.fcgi?" + params.toString());
+  
+  if (!response.ok) {
+    throw new Error("PubMed details failed with status" + response.status);
+  }
+
+  const data = await response.json();
+  
 
 }
 app.use(express.static("public"));
