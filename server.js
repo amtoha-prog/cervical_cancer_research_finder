@@ -121,6 +121,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.get("/api/search", async (req, res) => {
+
   // Reading the user's choices from the URL
   const keywords = (req.query.keywords || "").trim();
   const country = req.query.country || "";
@@ -131,7 +132,21 @@ app.get("/api/search", async (req, res) => {
   if (req.query.sort === "relevance") {
     sort = "relevance";
   }
+   // Validating inputs
+  if (country && !COUNTRIES.includes(country)) {
+    return res.status(400).json({ error: "Please choose a country from the list." });
+  }
+  if ((fromYear && !toYear) || (!fromYear && toYear)) {
+    return res.status(400).json({ error: "Please choose both a start year and an end year." });
+  }
+  if (fromYear && Number(fromYear) > Number(toYear)) {
+    return res.status(400).json({ error: "The start year must be before the end year." });
+  }
 
+  let countryTerm = country;
+  if (country.includes(" ")) {
+    countryTerm = '"' + country + '"';
+  }
 
 })
 
