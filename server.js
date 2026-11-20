@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 // Pubmed base address
 const PUBMED_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
 const EAST_AFRICA = '(Rwanda OR Tanzania OR Kenya OR Uganda OR Burundi OR "South Sudan" OR "Democratic Republic of the Congo" OR Somalia)';
+const COUNTRIES = ["Rwanda", "Tanzania", "Kenya", "Uganda", "Burundi", "South Sudan", "Democratic Republic of the Congo", "Somalia"];
 
 // The Pubmed search words are from the user's choices
 function buildSearchTerm(keywords, country) {
@@ -110,7 +111,7 @@ async function getArticleDetails(ids) {
       link: "https://pubmed.ncbi.nlm.nih.gov/" + id + "/",
     });
   }
-  
+
   return articles;
 }
 app.use(express.static("public"));
@@ -119,6 +120,14 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
+app.get("/api/search", async (req, res) => {
+  // Reading the user's choices from the URL
+  const keywords = (req.query.keywords || "").trim();
+  const country = req.query.country || "";
+  const fromYear = req.query.fromYear || "";
+  const toYear = req.query.toYear || "";
+})
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
 });
+getArticleDetails(["43041668", "43024150"]).then((articles) => console.log(articles));
