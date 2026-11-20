@@ -102,9 +102,16 @@ async function getArticleDetails(ids) {
   for (const id of data.result.uids) {
     const article = data.result[id];
     articles.push({
-
-    })
+      id: id,
+      title: article.title,
+      authors: formatAuthors(article.authors),
+      journal: article.source,
+      date: article.pubdate,
+      link: "https://pubmed.ncbi.nlm.nih.gov/" + id + "/",
+    });
   }
+  
+  return articles;
 }
 app.use(express.static("public"));
 
