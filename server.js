@@ -66,6 +66,7 @@ async function searchPubMed(term, sort, fromYear, toYear) {
   const data = await response.json();
   return data.esearchresult;
 }
+
 // Shows up to 3 author names, if more it's "et al."
 function formatAuthors(authors) {
   const names = authors.map((author) => author.name)
@@ -76,8 +77,17 @@ function formatAuthors(authors) {
   if (names.length > 3) {
     return names.slice(0, 3).join(", ") + " et al.";
   }
+  return names.join(", ");
 }
 
+async function getArticleDetails(ids) {
+  const params = new URLSearchParams({
+    db: "pubmed",
+    id: ids.join(","),
+    retmode: "json",
+  });
+
+}
 app.use(express.static("public"));
 
 app.get("/api/health", (req, res) => {
