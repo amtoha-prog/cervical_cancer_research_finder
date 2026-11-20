@@ -61,8 +61,19 @@ async function searchPubMed(term, sort, fromYear, toYear) {
   if (fromYear && toYear) {
     params.append("datetype", "pdat");
     params.append("mindate", fromYear);
-    params.append("maxidate", toYear);
+    params.append("maxdate", toYear);
   }
 
   addNcbiSettings(params);
+  // Sending a request and wait for PubMed's answer
+  const response = await fetch(PUBMED_URL + "/esearch.fcgi?" + params.toString());
+
+  if (!response.ok) {
+    throw new Error("PubMed search failed with status" + response.status);
+  }
+
+  // Turn the JSON text into a Javascript object
+  const data = await response.json();
+  return data.esearchresult;
 }
+
