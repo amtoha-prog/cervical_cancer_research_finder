@@ -24,6 +24,7 @@
         <button type="button" class="quick-button" data-keyword="prevention">Prevention</button>
         <button type="button" class="quick-button" data-keyword="early detection">Early detection</button>
         <button type="button" class="quick-button" data-keyword="treatment">Treatment</button>
+      </div>
 
         <!-- Filters -->
          <div class="filters">
@@ -36,12 +37,14 @@
              <option value="Kenya">Kenya</option>
              <option value="Uganda">Uganda</option>
              <option value="Burundi">Burundi</option>
-             <option value="South Sudan">South Sudan<option>
+             <option value="South Sudan">South Sudan</option>
              <option value="Democratic Republic of the Congo">DR Congo</option>
              <option value="Somalia">Somalia</option>
              </select>
              <!-- Year filter -->
               <label for="fromYearInput">From year (optional)</label>
+              <label for="toYearInput">To year (optional)</label>
+              <input type="number" id="toYearInput" min="1950" max="2026" placeholder="e.g 2026">
               <input type="number" id="fromYearInput" min="1950" max="2026" placeholder="eg.2015">
             
               <!--Best match-->
@@ -66,3 +69,7 @@
     <p>The country shown is based on the artcle's text or authors' associations, so research may not have been conducted there.</p>
     <p>Data from <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>(NCBI). This tool does not give medical advice.</p>
   </footer> 
+
+  <script src="script.js"></script>
+</body>
+</html>
