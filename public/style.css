@@ -34,3 +34,34 @@ footer {
 footer a {
   color: #173B4D;
 }
+
+/* Form */
+form {
+  background-color: #FFFFFF;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(23, 59, 77, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  border: 1px solid #D1DCDA;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #4C9290;
+  outline-offset: 2px;
+}
