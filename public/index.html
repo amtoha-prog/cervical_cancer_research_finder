@@ -8,8 +8,8 @@
 </head>
 <body>
   <header>
-    <h1>Cervical Cancer Reasearch Finder</h1>
-    <p>Find published reasearch on cervical cancer in East Africa</p>
+    <h1>Cervical Cancer Research Finder</h1>
+    <p>Find published research on cervical cancer in East Africa</p>
   </header>
 
   <main>
@@ -31,7 +31,7 @@
           <label for="countrySelect">Country</label>
           <select id="countrySelect">
             <!-- Values must match the COUNTRIES list in server.js exactly -->
-             <option value="">ALL EAC countries</option>
+             <option value="">All EAC countries</option>
              <option value="Rwanda">Rwanda</option>
              <option value="Tanzania">Tanzania</option>
              <option value="Kenya">Kenya</option>
@@ -43,9 +43,10 @@
              </select>
              <!-- Year filter -->
               <label for="fromYearInput">From year (optional)</label>
+              <input type="number" id="fromYearInput" min="1950" max="2026" placeholder="e.g. 2015">
+
               <label for="toYearInput">To year (optional)</label>
-              <input type="number" id="toYearInput" min="1950" max="2026" placeholder="e.g 2026">
-              <input type="number" id="fromYearInput" min="1950" max="2026" placeholder="eg.2015">
+              <input type="number" id="toYearInput" min="1950" max="2026" placeholder="e.g. 2026">
             
               <!--Best match-->
               <label for="sortSelect">Sort by</label>
@@ -61,13 +62,13 @@
 
     <p id="message" aria-live="polite"></p>
 
-    <!--Aritcle cards-->
+    <!--Article cards-->
     <div id="results"></div>
   </main>
 
   <footer>
-    <p>The country shown is based on the artcle's text or authors' associations, so research may not have been conducted there.</p>
-    <p>Data from <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a>(NCBI). This tool does not give medical advice.</p>
+    <p>The country shown is based on the article's text or authors' affiliations, so research may not have been conducted there.</p>
+    <p>Data from <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> (NCBI). This tool does not give medical advice.</p>
   </footer> 
 
   <script src="script.js"></script>
