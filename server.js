@@ -142,10 +142,20 @@ app.get("/api/search", async (req, res) => {
   if (fromYear && Number(fromYear) > Number(toYear)) {
     return res.status(400).json({ error: "The start year must be before the end year." });
   }
-
+   
+  // Let names with spaces have quotes for PubMed to search them as one phrase
   let countryTerm = country;
   if (country.includes(" ")) {
     countryTerm = '"' + country + '"';
+  }
+
+  try {
+    const term = buildSearchTerm(keywords, countryTerm);
+    const searchResult = await searchPubMed(term, sort, fromYear, toYear);
+
+    if(searchResult.idlist.length === 0) {
+      return res.json({ count: 0, articles: [] });
+    }
   }
 
 })
