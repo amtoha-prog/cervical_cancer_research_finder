@@ -117,3 +117,40 @@ button:disabled {
   background-color: #173B4D;
   color: #FFFFFF;
 }
+
+/* Message and article cards  */
+#message {
+  font-weight: bold;
+  margin: 16px 0;
+}
+
+#message.error {
+  color: #b00020;
+}
+
+.article-card {
+  background-color: #FFFFFF;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #4C9290;
+  border-radius: 4px;
+}
+
+.article-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color: #173B4D;
+}
+
+.article-card p {
+  margin: 4px 0;
+}
+
+.article-card a {
+  color: #173B4D;
+  font-weight: bold;
+}
+
+.article-card a:hover {
+  text-decoration: none;
+}
