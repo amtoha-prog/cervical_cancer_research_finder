@@ -7,12 +7,6 @@ body {
   line-height: 1.5;
 }
 
-header{
-  background-color: #173b4D;
-  color: #27343A;
-  line-height: 1.5;
-}
-
 header {
   background-color: #173B4D;
   color: #FFFFFF;
@@ -66,7 +60,7 @@ select {
 }
 
 input:focus,
-button:focus-visible
+button:focus-visible,
 select:focus,
 a:focus-visible {
   outline: 2px solid #4C9290;
@@ -113,7 +107,7 @@ button:disabled {
   border-radius: 16px;
 }
 
-.quick-hover {
+.quick-button:hover {
   background-color: #173B4D;
   color: #FFFFFF;
 }
