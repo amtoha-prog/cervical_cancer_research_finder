@@ -72,3 +72,30 @@ a:focus-visible {
   outline: 2px solid #4C9290;
   outline-offset: 2px;
 }
+
+/* Buttons */
+button {
+  background-color: #173B4D;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #27343A;
+}
+
+button[type="submit"] {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button:disabled {
+  background-color:#4c9290;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
