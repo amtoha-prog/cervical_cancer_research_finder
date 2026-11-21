@@ -99,3 +99,21 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Quick search buttons */
+.quick-search {
+  margin-top: 12px
+}
+
+.quick-button {
+  background-color: #E5F0EE;
+  color: #173B4D;
+  margin: 4px 4px 0 0;
+  padding: 6px 12px;
+  border-radius: 16px;
+}
+
+.quick-hover {
+  background-color: #173B4D;
+  color: #FFFFFF;
+}
