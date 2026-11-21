@@ -12,3 +12,13 @@ const searchButton = document.querySelector('button[type="submit]');
 
 const quickButtons = document.querySelectorAll(".quick-button");
 
+function showMessage(text, isError)
+ {
+  message.textContent = text;
+
+  if (isError) {
+    message.classList.add("error");
+  } else {
+    message.classList.remove("error");
+  }
+ }
