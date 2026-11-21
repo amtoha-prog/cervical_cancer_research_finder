@@ -28,8 +28,9 @@
 
         <!-- Filters -->
          <div class="filters">
-          <label for="countrySelect">Country</label>
-          <select id="countrySelect">
+          <div class="filter">
+           <label for="countrySelect">Country</label>
+           <select id="countrySelect">
             <!-- Values must match the COUNTRIES list in server.js exactly -->
              <option value="">All EAC countries</option>
              <option value="Rwanda">Rwanda</option>
@@ -44,7 +45,7 @@
         </div>
 
         <div class="filter">
-          <label for="sortsSelect">Sort by</label>
+          <label for="sortSelect">Sort by</label>
           <select id="sortSelect">
             <option value="newest">Newest first</option>
             <option value="relevance">Best match</option>
