@@ -169,5 +169,4 @@ app.get("/api/search", async (req, res) => {
 
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
-});
-getArticleDetails(["43041668", "43024150"]).then((articles) => console.log(articles));
+
