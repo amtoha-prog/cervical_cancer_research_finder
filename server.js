@@ -156,9 +156,16 @@ app.get("/api/search", async (req, res) => {
     if(searchResult.idlist.length === 0) {
       return res.json({ count: 0, articles: [] });
     }
+
+    const articles = await getArticleDetails(searchResult.idlist);
+    res.json({ count: Number(searchResult.count), articles: articles });
+  } catch (error) {
+
+    console.error(error.message);
+    res.status(502).json({ error: "Could not reach PubMed right now. Please try again in a moment."});
   }
 
-})
+});
 
 app.listen(PORT, () =>{
   console.log(`CCRF server running at http://localhost:${PORT}`);
