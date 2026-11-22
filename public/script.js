@@ -88,3 +88,17 @@ async function searchArticles() {
     searchButton.disabled = false;
   }
 }
+
+// Connecting the form and buttons
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchArticles();
+});
+
+for (const button of quickButtons) {
+  button.addEventListener("click", () => {
+    keywordsInput.value = button.dataset.keyword;
+    searchArticles();
+  });
+}
