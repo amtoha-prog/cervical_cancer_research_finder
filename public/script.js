@@ -78,5 +78,13 @@ async function searchArticles() {
       showMessage("No articles found. Try other keywords, another country or a wider year range.", false);
       return;
     }
+
+    showMessage("Found " + data.count + " articles. Showing the first " + data.articles.length + ".", false);
+    showResults(data.articles);
+  } catch (error) {
+    
+    showMessage("Could not connect to the server. Please check your connection and try again.", true);
+  } finally {
+    searchButton.disabled = false;
   }
 }
