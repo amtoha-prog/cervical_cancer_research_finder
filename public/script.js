@@ -8,7 +8,7 @@ const toYearInput = document.getElementById("toYearInput");
 const message = document.getElementById("message");
 const results = document.getElementById("results");
 
-const searchButton = document.querySelector('button[type="submit]');
+const searchButton = document.querySelector('button[type="submit"]');
 
 const quickButtons = document.querySelectorAll(".quick-button");
 
@@ -40,13 +40,14 @@ function showMessage(text, isError)
     details.textContent = article.journal + " . " + article.date;
 
     const link = document.createElement("a");
-    link.href = article.journal + " . " + article.date;
+    link.href = article.journal 
+    link.href = article.link + " . " + article.date;
     link.textContent = "View on PubMed ->";
     link.target = "_blank";
     link.rel = "noopener";
 
     card.append(title, authors, details, link);
-    reuslts.append(card);
+    results.append(card);
   }
  }
 
@@ -56,13 +57,13 @@ async function searchArticles() {
   const params = new URLSearchParams({
     keywords: keywordsInput.value,
     country: countrySelect.value,
-    frinYear: fromYearInput.value,
+    fromYear: fromYearInput.value,
     toYear: toYearInput.value,
     sort: sortSelect.value,
   });
 
   showMessage("Searching PubMed...", false);
-  results.innerHTML
+  results.innerHTML = "";
   searchButton.disabled = true;
   
   try {
@@ -83,7 +84,9 @@ async function searchArticles() {
     showResults(data.articles);
   } catch (error) {
     
+    console.error(error);
     showMessage("Could not connect to the server. Please check your connection and try again.", true);
+    
   } finally {
     searchButton.disabled = false;
   }
