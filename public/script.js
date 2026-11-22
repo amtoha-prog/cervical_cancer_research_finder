@@ -40,9 +40,8 @@ function showMessage(text, isError)
     details.textContent = article.journal + " . " + article.date;
 
     const link = document.createElement("a");
-    link.href = article.journal 
-    link.href = article.link + " . " + article.date;
-    link.textContent = "View on PubMed ->";
+    link.href = article.link;
+    link.textContent = "View on PubMed →";
     link.target = "_blank";
     link.rel = "noopener";
 
@@ -86,7 +85,7 @@ async function searchArticles() {
     
     console.error(error);
     showMessage("Could not connect to the server. Please check your connection and try again.", true);
-    
+
   } finally {
     searchButton.disabled = false;
   }
