@@ -64,4 +64,19 @@ async function searchArticles() {
   showMessage("Searching PubMed...", false);
   results.innerHTML
   searchButton.disabled = true;
+  
+  try {
+    const response = await fetch("/api/search?" + params.toString());
+    const data = await response.json();
+
+    if (!response.ok) {
+      showMessage(data.error, true);
+      return;
+    }
+
+    if (data.count === 0) {
+      showMessage("No articles found. Try other keywords, another country or a wider year range.", false);
+      return;
+    }
+  }
 }
