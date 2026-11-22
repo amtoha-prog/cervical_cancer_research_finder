@@ -49,3 +49,19 @@ function showMessage(text, isError)
     reuslts.append(card);
   }
  }
+
+// Backend for articles
+
+async function searchArticles() {
+  const params = new URLSearchParams({
+    keywords: keywordsInput.value,
+    country: countrySelect.value,
+    frinYear: fromYearInput.value,
+    toYear: toYearInput.value,
+    sort: sortSelect.value,
+  });
+
+  showMessage("Searching PubMed...", false);
+  results.innerHTML
+  searchButton.disabled = true;
+}
