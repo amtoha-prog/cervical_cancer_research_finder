@@ -93,3 +93,15 @@ The application is deployed across two web servers behind a load balancer.
 The load balancer distributes incoming requests between the web servers.
 
 ## Technologies Used
+
+- **HTML** – application structure
+- **CSS** – styling and responsive layout
+- **JavaScript** – frontend interactions
+- **Node.js** – backend runtime
+- **Express.js** – backend routing
+- **dotenv** – loads private settings from the `.env` file
+- **PubMed / NCBI E-utilities** – research data
+- **Nginx** – web server and reverse proxy
+- **HAProxy** – load balancing
+- **PM2** – Node.js process management
+
