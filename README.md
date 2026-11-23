@@ -126,3 +126,60 @@ cervical_cancer_research_finder/
 ├── .gitignore
 └── README.md
 ```
+
+## Running the Application Locally
+
+## Requirements
+
+- Node.js
+- npm
+- Git
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/amtoha-prog/cervical_cancer_research_finder.git
+```
+
+### 2. Open the project folders
+
+```bash
+cd cervical_cancer_research_finder
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+Create your local `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+Add your configuration:
+
+```env 
+PORT=3000
+NCBI_TOOL=your_tool_name
+NCBI_EMAIL=your_email
+NCBI_API_KEY=your_optional_api_key
+```
+
+Thr API key is optional. Do not commit your `.env` file or expose private credentials in the repository.
+
+### 5. Start the application
+
+```bash 
+npm start
+```
+
+Open the application in you browser at:
+
+```text
+http://localhost:3000
+```
