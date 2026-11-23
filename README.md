@@ -64,3 +64,32 @@ Official documentation: [NCBI E-utilities]
 (https://www.ncbi.nlm.nih.gov/books/NBK25501) · Beginner guide: [E-utilities Quick Start](https://eutilities.github.io/site/Quick_Start/eu_quick/)
 
 The API requests are handled by the Node.js backend rather than directly from the browser. NCBI request details are configured using environment variables, and the optional API key is kept on the server.
+
+## Application Architecture
+
+The application is deployed across two web servers behind a load balancer.
+
+```text
+                 Browser
+                    |
+                    v
+       lb-01 – HAProxy Load Balancer
+          www.alissamtoha.tech
+               /        \
+              v          v
+          web-01       web-02
+          Nginx        Nginx
+            |            |
+            v            v
+       CCRF App      CCRF App
+       Node.js       Node.js
+       + Express     + Express
+            \            /
+             \          /
+              v        v
+          PubMed E-utilities API
+```
+
+The load balancer distributes incoming requests between the web servers.
+
+## Technologies Used
