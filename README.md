@@ -105,3 +105,24 @@ The load balancer distributes incoming requests between the web servers.
 - **HAProxy** – load balancing
 - **PM2** – Node.js process management
 
+## Project Structure
+
+```text
+cervical_cancer_research_finder/
+│
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── deploy/
+│   ├── nginx-web.conf
+│   └── haproxy.cfg
+│
+├── server.js
+├── package.json
+├── package-lock.json
+├── .env.example
+├── .gitignore
+└── README.md
+```
