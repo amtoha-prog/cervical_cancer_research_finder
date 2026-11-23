@@ -33,3 +33,16 @@ It is designed for health students, researchers, healthcare workers and public h
 Each result displays the article title, authors, journal, publication date and a link to te original PubMed record.
 
 The application also displays messages when no articles are found or when the API cannot be reached.
+
+## Countries Covered
+ 
+CCRF focuses on the eight East African Community (EAC) partner states:
+ 
+- Rwanda
+- Tanzania
+- Kenya
+- Uganda
+- Burundi
+- South Sudan
+- Democratic Republic of the Congo
+- Somalia
