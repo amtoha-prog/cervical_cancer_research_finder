@@ -46,3 +46,12 @@ CCRF focuses on the eight East African Community (EAC) partner states:
 - South Sudan
 - Democratic Republic of the Congo
 - Somalia
+
+**Importance limitation:** Country matching is based on information found in text or author affiliations. This does not necessarily mean that their research was conducted in the selected country. Their application displays up to 20 results per search.
+
+## API Used
+
+CCRF uses the **PubMed API through NCBI E-utilities** to retrieve published research.
+
+The application uses to main endpoints:
+
