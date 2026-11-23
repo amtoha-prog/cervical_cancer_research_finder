@@ -55,3 +55,12 @@ CCRF uses the **PubMed API through NCBI E-utilities** to retrieve published rese
 
 The application uses to main endpoints:
 
+| Endpoint | Purpose |
+| --- | --- |
+|Esearch | Searches PubMed using the user's keywords and filters, then returns matching article IDs. |
+| ESummary | Uses those IDs to retrieve article information such as titles, authors, journals and publication dates. |
+
+Official documentation: [NCBI E-utilities]
+(https://www.ncbi.nlm.nih.gov/books/NBK25501) · Beginner guide: [E-utilities Quick Start](https://eutilities.github.io/site/Quick_Start/eu_quick/)
+
+The API requests are handled by the Node.js backend rather than directly from the browser. NCBI request details are configured using environment variables, and the optional API key is kept on the server.
