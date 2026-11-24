@@ -5,11 +5,11 @@
 
 ## What is CCRF?
 
-CCRF is a simple websit that helps people **find publisehed research about cervical cancer East Africa**.
+CCRF is a simple website that helps people **find published research about cervical cancer East Africa**.
 
 ## About
 
-Cervical cancer is a major public health concern, mainly in regions where access to prevention, screening and early treatment remains limited. According to the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/cervical-cancer), cervical cancer is largelt preventable through HPV vaccination, screening and timely treatment.
+Cervical cancer is a major public health concern, mainly in regions where access to prevention, screening and early treatment remains limited. According to the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/cervical-cancer), cervical cancer is large preventable through HPV vaccination, screening and timely treatment.
 
 The Cervical Cancer Research Finder (CCRF) is a web application that helps users discover published research on cervical cancer relevant to East Africa.
 
@@ -30,7 +30,7 @@ It is designed for health students, researchers, healthcare workers and public h
    -**Best match**
 5. Click Search to view the matching research articles
 
-Each result displays the article title, authors, journal, publication date and a link to te original PubMed record.
+Each result displays the article title, authors, journal, publication date and a link to the original PubMed record.
 
 The application also displays messages when no articles are found or when the API cannot be reached.
 
@@ -170,7 +170,7 @@ NCBI_EMAIL=your_email
 NCBI_API_KEY=your_optional_api_key
 ```
 
-Thr API key is optional. Do not commit your `.env` file or expose private credentials in the repository.
+The API key is optional. Do not commit your `.env` file or expose private credentials in the repository.
 
 ### 5. Start the application
 
@@ -178,7 +178,7 @@ Thr API key is optional. Do not commit your `.env` file or expose private creden
 npm start
 ```
 
-Open the application in you browser at:
+Open the application in your browser at:
 
 ```text
 http://localhost:3000
@@ -206,7 +206,7 @@ The deployment process involves:
 
 1. Connecting to each web server using SSH.
 2. Installing Nodes.js and  the required dependancies.
-3. Cloning the project respiratory.
+3. Cloning the project repository.
 4. Creating the environment configuration file.
 5. Installing project dependancies using 'npm install'.
 6. Starting the application using PM2.
@@ -217,25 +217,24 @@ The commands used on each web server (web-01 and web-02)
 
 ```bash
 ssh -i <your-key-file> ubuntu@<server-ip>
-sudo apt update && sudo apt install -y git cur1
-cur1 -fsSL https://deb.nnodesource.com/setup_22.x -o nodesource_setup.sh
+sudo apt update && sudo apt install -y git curl
+cur1 -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
 git clone https://github.com/amtoha-prog/cervical_cancer_research_finder.git
-cd cervical_cancer_research_finder && npm install && cp .env.example .env.sudo nmp install -g pm2
-pm2 start server .js --name ccrf
-pm2 start startup  # then run the command it prints
+cd cervical_cancer_research_finder && npm install && cp .env.example env.sudo nmp install -g pm2
+pm2 start server.js --name ccrf
+pm2 startup  # then run the command it prints
 pm2 save 
-sudo ngix -t && sudo systemct1 reload nginx
-curl -I https//localhost  # expect x-Served-By; 7345-web-01 or 7345-web-02 ```
-
+sudo nginx -t && sudo systemctl reload nginx
+curl -I http://localhost  
 The Nginx configuration used for the web server is avaible in:
 
-[`deploy/ngix-web.conf`](deploy/ngix-web.conf)
+[`deploy/nginx-web.conf`](deploy/nginx-web.conf)
  
  ### load balancer deployment
 
- HAProxy runs on 1b-01. Its confirgaration ([`deploy/haproxy/.cfg``](deploy/haproxy.cfg)):
+ HAProxy runs on 1b-01. Its confirgaration ([`deploy/haproxy/.cfg`](deploy/haproxy.cfg)):
 
 
 -redirect HTTP visitors to HTTPS
@@ -260,7 +259,7 @@ x-served-by: 7345-web-02
 | challenge | solution |
 |---|---|
 | Finding research relevant to East Africa | combined "cervical cancer" with the user's keywords and the selected country (or all eightt EAC countries). |
-| Handling searches with no reusults | added a check for empty article ID lists and returned an empty result list. |
+| Handling searches with no results | added a check for empty article ID lists and returned an empty result list. |
 | Handling API failures | Added error handling so the application can display a youthful message when PubMed supports. |
 | PubMed cannot sort results oldest-first | offered *Newest first* and *Best match* instead ,which PubMed supports. |
 | A misspelled parameter (`maxidate`) made PubMed silently ignore the year filter | Noticed identical counts with and without the filter, then found the typo. |
@@ -271,7 +270,7 @@ x-served-by: 7345-web-02
 ## Credits and References
  
 - [PubMed – National Library of Medicine](https://pubmed.ncbi.nlm.nih.gov/)
-- [PubMed - National Library of Medicine](https://www.ncbi.n1m.gov/books/NBK25501/)
+- [PubMed - National Library of Medicine](https://www.ncbi.nlm.gov/books/NBK25501/)
 - [E-utilities Quick Start (beginner guide)](https://eutilities.github.io/site/Quick_Start/eu_quick/)
 - [World Health Organization – Cervical Cancer](https://www.who.int/news-room/fact-sheets/detail/cervical-cancer)
 - [Node.js](https://nodejs.org/)
