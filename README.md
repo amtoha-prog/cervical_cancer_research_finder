@@ -183,3 +183,102 @@ Open the application in you browser at:
 ```text
 http://localhost:3000
 ```
+
+## Deployment
+ 
+CCRF is deployed on two web servers and one load balancer.
+ 
+| Server | Public IP | Role |
+|---|---|---|
+| web-01 | `3.9.164.248` | Hosts the first application instance |
+| web-02 | `18.133.181.20` | Hosts the second application instance |
+| lb-01 | `35.177.109.3` | HAProxy load balancer and domain routing |
+
+The live application is accessible through:
+
+[https://www.alissamtoha.tech](https://www.alissamtoha.tech)
+
+###  Web Server Deployment
+
+The application is hosted on both web servers.
+
+The deployment process involves:
+
+1. Connecting to each web server using SSH.
+2. Installing Nodes.js and  the required dependancies.
+3. Cloning the project respiratory.
+4. Creating the environment configuration file.
+5. Installing project dependancies using 'npm install'.
+6. Starting the application using PM2.
+7. Configuring Ngix to forward incoming web requests to the Node.js application.
+8. Testing the application on each server.
+
+The commands used on each web server (web-01 and web-02)
+
+```bash
+ssh -i <your-key-file> ubuntu@<server-ip>
+sudo apt update && sudo apt install -y git cur1
+cur1 -fsSL https://deb.nnodesource.com/setup_22.x -o nodesource_setup.sh
+sudo -E bash nodesource_setup.sh
+sudo apt-get install -y nodejs
+git clone https://github.com/amtoha-prog/cervical_cancer_research_finder.git
+cd cervical_cancer_research_finder && npm install && cp .env.example .env.sudo nmp install -g pm2
+pm2 start server .js --name ccrf
+pm2 start startup  # then run the command it prints
+pm2 save 
+sudo ngix -t && sudo systemct1 reload nginx
+curl -I https//localhost  # expect x-Served-By; 7345-web-01 or 7345-web-02 ```
+
+The Nginx configuration used for the web server is avaible in:
+
+[`deploy/ngix-web.conf`](deploy/ngix-web.conf)
+ 
+ ### load balancer deployment
+
+ HAProxy runs on 1b-01. Its confirgaration ([`deploy/haproxy/.cfg``](deploy/haproxy.cfg)):
+
+
+-redirect HTTP visitors to HTTPS
+-decrypts HTTPS using the certificate for WWW.alissamtoha.tech (SSL termination)
+-sends request to web-01 and web-02 in turn (`balance roundrobin`)
+-health check both server and skips any server that is down 
+
+### Testing load Balancing 
+
+The application was tested by sending multiple request through the domain and checking the `X-Served -By` response header.
+
+```bash 
+curl -sI https://www.alissamtoha.tech | grep -i x-served-by
+```
+
+```text
+x-served-by: 7345-web-01
+x-served-by: 7345-web-02
+
+## challenges and solutions
+
+| challenge | solution |
+|---|---|
+| Finding research relevant to East Africa | combined "cervical cancer" with the user's keywords and the selected country (or all eightt EAC countries). |
+| Handling searches with no reusults | added a check for empty article ID lists and returned an empty result list. |
+| Handling API failures | Added error handling so the application can display a youthful message when PubMed supports. |
+| PubMed cannot sort results oldest-first | offered *Newest first* and *Best match* instead ,which PubMed supports. |
+| A misspelled parameter (`maxidate`) made PubMed silently ignore the year filter | Noticed identical counts with and without the filter, then found the typo. |
+| A missing quote in `script.js` stopped all the JavaScript | Used the browser DevTools Console to find the exact line. |
+| SSH from my laptop was denied because my public and private keys didn't match | Rebuilt the public key with `ssh-keygen -y`. |
+| My first domain pointed to web-01, skipping the load balancer | Chose www.alissamtoha.tech, which points to the load balancer rather than a single server. |
+ 
+## Credits and References
+ 
+- [PubMed – National Library of Medicine](https://pubmed.ncbi.nlm.nih.gov/)
+- [PubMed - National Library of Medicine](https://www.ncbi.n1m.gov/books/NBK25501/)
+- [E-utilities Quick Start (beginner guide)](https://eutilities.github.io/site/Quick_Start/eu_quick/)
+- [World Health Organization – Cervical Cancer](https://www.who.int/news-room/fact-sheets/detail/cervical-cancer)
+- [Node.js](https://nodejs.org/)
+- [Express.js](https://expressjs.com/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [Nginx](https://nginx.org/)
+- [HAProxy](https://www.haproxy.org/)
+- [PM2](https://pm2.keymetrics.io/)
+ 
+ 
